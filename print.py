@@ -58,65 +58,9 @@
 # 5a29v4s3D3d2F4g2O3i2a1
 # 1v2b2w2P3u2T1Y1y2W2Q
 
-# def input(file_txt):
-#     with open(file_txt, "r") as file_in:
-#         stroka = file_in.readline()
-#         return stroka
-
-# def output(file_txt, code):
-#     with open(file_txt, 'a') as file_out:
-#         file_out.writelines(code + '\n')
-
-# def coding(stroka):
-#     k = 1
-#     string = ""
-#     for i in range(len(stroka)-1):
-#         if stroka[i] == stroka[i+1]:
-#             k += 1
-#         else:
-#             string += str(k)+stroka[i]
-#             k = 1
-#     return(string)    
-
-# infile = "text_words.txt"
-# outfile = "text_code_words.txt"
-
-# s = input(infile)
-# print(s)
-# st = coding(s)
-# print(st)
-# output(outfile, st)  
-
-
-# line_count = sum(1 for line in open('text_words.txt'))
-# print(line_count)
-# n = 0
-# while n < line_count:
-#     # with open('text_words.txt', "r") as file_in:
-#     #     stroka = file_in.readline()
-#     stroka = open ("text_words.txt", "r"). readlines () [n]
-#     print(stroka)
-#     k = 1
-#     prev_symbol = ""
-#     string = ""
-#     print(len(stroka))
-#     for symbol in stroka:
-#         if symbol != prev_symbol:
-#             if prev_symbol:
-#                 string += str(k) + prev_symbol
-#             k = 1
-#             prev_symbol = symbol
-#         else:
-#             k += 1
-#             print(string)
-#     with open('text_code_words.txt', 'a') as file_out:
-#         file_out.writelines(string + '\n')
-#     n +=1
-
-
 
 import os.path
-# if os.path.exists("text_words.txt") and not os.path.exists('text_code_words.txt'):
+
 def code(text_words = "text_words.txt", code_text = "text_code_words.txt"):
     if os.path.exists(text_words) and not os.path.exists(code_text):
         for stroka in open (text_words, "r"). readlines ():
@@ -137,13 +81,16 @@ def code(text_words = "text_words.txt", code_text = "text_code_words.txt"):
                 file_out.writelines(string + '\n')
     else:
         print("The files do not exist in the system!")
-def decode(code_text="text_code_words.txt"):
+
+def decoder(code_text="text_code_words.txt"):
     if os.path.exists(code_text):
         for stroka in open (code_text, "r"):
             decode = ''
             count = ''
             for char in stroka:
-                if char == chr(10):
+                if char == '':
+                    break
+                elif char == chr(10):
                     break
                 elif char.isdigit():
                     count += char
@@ -151,23 +98,9 @@ def decode(code_text="text_code_words.txt"):
                     print("count= ", count)
                     decode += char * int(count)
                     count = ''
+            print("dddddd")
             open(code_text, "a").writelines(decode + "\n")
     else:
         print("The files do not exist in the system!")
-        # with open(code_text) as my_f_1, \
-        #         open(text, "a") as my_f_2:
-        #     for i in my_f_1:
-        #         decode = ''
-        #         count = ''
-        #         for char in i:
-        #             if char.isdigit():
-        #                 count += char
-        #             else:
-        #                 decode += char * int(count)
-        #                 count = ''
-        #         my_f_2.write(decode)
-    
-       
-
 code()
-decode()
+decoder()
