@@ -143,7 +143,7 @@ def decode(code_text="text_code_words.txt"):
             decode = ''
             count = ''
             for char in stroka:
-                if char == "\n":
+                if char == chr(10):
                     break
                 elif char.isdigit():
                     count += char
@@ -151,7 +151,7 @@ def decode(code_text="text_code_words.txt"):
                     print("count= ", count)
                     decode += char * int(count)
                     count = ''
-            open(code_text, "a").write(decode)
+            open(code_text, "a").writelines(decode + "\n")
     else:
         print("The files do not exist in the system!")
         # with open(code_text) as my_f_1, \
@@ -168,6 +168,6 @@ def decode(code_text="text_code_words.txt"):
         #         my_f_2.write(decode)
     
        
+
 code()
 decode()
-    
