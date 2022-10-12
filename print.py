@@ -77,8 +77,7 @@ def code(text_words = "text_words.txt", code_text = "text_code_words.txt"):
                 else:
                     count += 1
             print(string)
-            with open(code_text, 'a') as file_out:
-                file_out.writelines(string + '\n')
+            open(code_text, 'a').writelines(string + '\n')
     else:
         print("The files do not exist in the system!")
 
