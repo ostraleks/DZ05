@@ -84,21 +84,19 @@ def code(text_words = "text_words.txt", code_text = "text_code_words.txt"):
 
 def decoder(code_text="text_code_words.txt"):
     if os.path.exists(code_text):
-        for stroka in open (code_text, "r"):
+        number_of_lines = sum(1 for line in open(code_text, 'r'))
+        for i in range(number_of_lines):
+            stroka = open (code_text, "r"). readlines () [i]
             decode = ''
             count = ''
             for char in stroka:
-                if char == '':
-                    break
-                elif char == chr(10):
+                if char == chr(10):
                     break
                 elif char.isdigit():
                     count += char
                 else:
-                    print("count= ", count)
                     decode += char * int(count)
                     count = ''
-            print("dddddd")
             open(code_text, "a").writelines(decode + "\n")
     else:
         print("The files do not exist in the system!")
